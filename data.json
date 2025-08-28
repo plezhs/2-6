@@ -15,12 +15,30 @@
         {
             "title": "2-6반 일본어 수행",
             "location": "posts/japanese.md"
+        },
+        {
+            "title": "생물 수행 1차시",
+            "location": "posts/biology.md"
         }
     ],
     "2025-09-01": [
         {
             "title": "2-6반 물리 수행",
             "location": "posts/physic.md"
+        },
+        {
+            "title": "물리 숙제",
+            "location": "posts/physichomework.md"
+        },
+        {
+            "title": "생물 수행 2차시",
+            "location": "posts/biology.md"
+        }
+    ],
+    "2025-09-02": [
+        {
+            "title": "생물 수행 3차시",
+            "location": "posts/biology.md"
         }
     ],
     "exceptions": {}
