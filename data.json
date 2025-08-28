@@ -5,12 +5,6 @@
             "location": "posts/past_event.md"
         }
     ],
-    "2025-08-28": [
-        {
-            "title": "2-6반 투표",
-            "location": "posts/vote.md"
-        }
-    ],
     "2025-09-09": [
         {
             "title": "2-6반 화학 수행",
@@ -21,6 +15,12 @@
         {
             "title": "2-6반 일본어 수행",
             "location": "posts/japanese.md"
+        }
+    ],
+    "2025-09-01": [
+        {
+            "title": "2-6반 물리 수행",
+            "location": "posts/physic.md"
         }
     ],
     "exceptions": {}
