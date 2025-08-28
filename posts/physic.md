@@ -6,4 +6,4 @@
 
 시간 :  9월 1일 (월) 7교시
 
-[<img src="posts/images/physic.png" width="270" height="480"/>]
+[<img src="posts/images/physic.png" width="300" height="450"/>]

@@ -6,4 +6,4 @@
 
 시간 :  8월 29일 (화) 7교시
 
-[<img src="posts/images/japanese.png" width="270" height="480"/>]
+[<img src="posts/images/japanese.png" width="300" height="450"/>]
