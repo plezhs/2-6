@@ -1,16 +1,4 @@
 {
-    "2025-03-15": [
-        {
-            "title": "과거 이벤트",
-            "location": "posts/past_event.md"
-        }
-    ],
-    "2025-09-09": [
-        {
-            "title": "2-6반 화학 수행",
-            "location": "posts/chemical.md"
-        }
-    ],
     "2025-08-29": [
         {
             "title": "2-6반 일본어 수행",
@@ -39,6 +27,12 @@
         {
             "title": "생물 수행 3차시",
             "location": "posts/biology.md"
+        }
+    ],
+    "2025-09-09": [
+        {
+            "title": "2-6반 화학 수행",
+            "location": "posts/chemical.md"
         }
     ],
     "exceptions": {}
