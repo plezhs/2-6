@@ -17,5 +17,11 @@
             "location": "posts/chemical.md"
         }
     ],
+    "2025-08-29": [
+        {
+            "title": "2-6반 일본어 수행",
+            "location": "posts/japanese.md"
+        }
+    ],
     "exceptions": {}
 }
