@@ -3,98 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>캘린더</title>
+    <title>2-6반</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #f9f9f9;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        #calendar-wrapper {
+        #controls {
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            justify-content: flex-end;
         }
 
-        .nav-btn {
-            background: #e0e0e0;
-            border: none;
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            font-size: 22px;
-            cursor: pointer;
-            color: #333;
-            transition: background-color 0.3s ease;
+        #sort-select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 14px;
         }
 
-        .nav-btn:hover {
-            background-color: #d0d0d0;
+        #posts-container {
+            width: 90%;
+            max-width: 800px;
         }
 
-        #calendar-container {
-            width: 450px; /* 고정 너비로 레이아웃 안정성 확보 */
-        }
-
-        .month-grid {
+        .post-item {
+            background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 20px;
-            background-color: #fff;
+            margin-bottom: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .days-of-week, .dates-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            gap: 5px;
-        }
-
-        .days-of-week div {
-            font-weight: bold;
-            padding-bottom: 10px;
-        }
-
-        .date-cell {
-            padding: 10px 5px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            min-height: 50px;
-        }
-
-        .date-cell.has-event {
-            background-color: #eaf6ff;
             cursor: pointer;
-            font-weight: bold;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
 
-        .date-cell.has-event:hover {
-            background-color: #d0eaff;
+        .post-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
         }
 
-        .date-cell .day-number {
+        .post-item h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .post-item .post-date {
             font-size: 0.9em;
-        }
-
-        .date-cell .event-title {
-            font-size: 0.7em;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-top: 5px;
-        }
-
-        .today {
-            background-color: #fffbe6;
-            border: 1px solid #ffeeba;
+            color: #888;
         }
 
         /* Modal Styles */
@@ -104,39 +73,30 @@
         .hidden { display: none; }
         .modal-header { display: flex; justify-content: center; align-items: center; margin-bottom: 15px; position: relative; }
         .modal-header h2 { margin: 0; }
-        #back-to-list-btn { position: absolute; left: 0; top: 50%; transform: translateY(-50%); background: #eee; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 14px; }
-        #back-to-list-btn:hover { background: #ddd; }
-        #posts-list { list-style: none; padding: 0; }
-        #posts-list li { padding: 12px; border-bottom: 1px solid #eee; cursor: pointer; transition: background-color 0.2s; }
-        #posts-list li:hover { background-color: #f4f4f4; }
         #content-body { margin-top: 20px; }
         #content-body img { max-width: 100%; }
     </style>
 </head>
 <body>
-    <h1>2-6반</h1>
+    <h1 id="inside">6반 인사이드</h1>
 
-    <div id="calendar-wrapper">
-        <button id="prev-month-btn" class="nav-btn">&lt;</button>
-        <div id="calendar-container"></div>
-        <button id="next-month-btn" class="nav-btn">&gt;</button>
+    <div id="controls">
+        <select id="sort-select">
+            <option value="oldest">남은 기간이 짧은 순</option>
+            <option value="newest">남은 기간이 긴 순</option>
+            <option value="title-asc">제목 오름차순</option>
+        </select>
     </div>
 
-    <!-- 날짜 클릭 시 뜨는 모달 -->
-    <div id="posts-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button class="close-btn" id="close-posts-modal">&times;</button>
-            <h2 id="modal-date"></h2>
-            <ul id="posts-list"></ul>
-        </div>
+    <div id="posts-container">
+        <!-- 게시물들이 여기에 동적으로 추가됩니다. -->
     </div>
 
-    <!-- 게시물 제목 클릭 시 뜨는 모달 -->
+    <!-- 게시물 내용 표시용 모달 -->
     <div id="content-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <button class="close-btn" id="close-content-modal">&times;</button>
             <div class="modal-header">
-                <button id="back-to-list-btn">&larr;</button>
                 <h2 id="content-title"></h2>
             </div>
             <div id="content-body"></div>
@@ -146,179 +106,98 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const calendarContainer = document.getElementById('calendar-container');
-            const prevBtn = document.getElementById('prev-month-btn');
-            const nextBtn = document.getElementById('next-month-btn');
+            const postsContainer = document.getElementById('posts-container');
+            const sortSelect = document.getElementById('sort-select');
             
-            // Modals
-            const postsModal = document.getElementById('posts-modal');
             const contentModal = document.getElementById('content-modal');
-            
-            // Modal-related elements
-            const modalDate = document.getElementById('modal-date');
-            const postsList = document.getElementById('posts-list');
             const contentTitle = document.getElementById('content-title');
             const contentBody = document.getElementById('content-body');
-            
-            // Buttons
-            const closePostsModalBtn = document.getElementById('close-posts-modal');
             const closeContentModalBtn = document.getElementById('close-content-modal');
-            const backToListBtn = document.getElementById('back-to-list-btn');
 
-            let allEvents = {};
-            let availableMonths = [];
-            let centerIndex = 0;
-            let currentOpenDate = null;
+            const inside = document.getElementById('inside');
 
-            async function initCalendar() {
+            let allPosts = [];
+
+            async function initialLoad() {
                 try {
                     const response = await fetch('data.json');
                     const data = await response.json();
-                    const { validEvents, exceptions } = processEvents(data);
-                    allEvents = validEvents;
 
                     const today = new Date();
-                    const currentYear = today.getFullYear();
-                    const startMonth = today.getMonth();
+                    today.setHours(0, 0, 0, 0); // 자정으로 설정하여 날짜만 비교
+                    
+                    for (const dateStr in data) {
+                        if (dateStr === "exceptions") continue;
+                        
+                        const postDate = new Date(dateStr + 'T00:00:00'); // 시간을 00:00:00으로 설정
 
-                    for (let month = startMonth; month <= 11; month++) {
-                        availableMonths.push({ year: currentYear, month: month });
+                        if (postDate >= today) { // 오늘 날짜보다 크거나 같은 경우에만 추가
+                            data[dateStr].forEach(post => {
+                                allPosts.push({
+                                    date: dateStr,
+                                    title: post.title,
+                                    location: post.location
+                                });
+                            });
+                        }
                     }
-
-                    renderCurrentMonth();
-                    setupEventListeners();
+                    
+                    renderPosts();
 
                 } catch (error) {
-                    console.error("Failed to load or process calendar data:", error);
-                    calendarContainer.innerHTML = '<p>캘린더 데이터를 불러오는 데 실패했습니다.</p>';
+                    console.error("Failed to load or process posts data:", error);
+                    postsContainer.innerHTML = '<p>게시물 데이터를 불러오는 데 실패했습니다.</p>';
                 }
             }
 
-            function renderCurrentMonth() {
-                calendarContainer.innerHTML = '';
-                const monthToShow = availableMonths[centerIndex];
-                const monthEl = createMonthGrid(monthToShow.year, monthToShow.month, allEvents);
-                calendarContainer.appendChild(monthEl);
-            }
+            function renderPosts() {
+                const sortMethod = sortSelect.value;
 
-            function setupEventListeners() {
-                nextBtn.addEventListener('click', () => {
-                    centerIndex = (centerIndex + 1) % availableMonths.length;
-                    renderCurrentMonth();
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    centerIndex = (centerIndex - 1 + availableMonths.length) % availableMonths.length;
-                    renderCurrentMonth();
-                });
-
-                // Event Delegation for date cells
-                calendarContainer.addEventListener('click', (e) => {
-                    const targetCell = e.target.closest('.has-event');
-                    if (targetCell) {
-                        openPostsModal(targetCell.dataset.date);
+                // 정렬
+                allPosts.sort((a, b) => {
+                    switch (sortMethod) {
+                        case 'oldest':
+                            return new Date(a.date) - new Date(b.date);
+                        case 'title-asc':
+                            return a.title.localeCompare(b.title);
+                        case 'newest':
+                        default:
+                            return new Date(b.date) - new Date(a.date);
                     }
                 });
 
-                postsList.addEventListener('click', (e) => {
-                    if (e.target.tagName === 'LI') {
-                        const title = e.target.textContent;
-                        const location = e.target.dataset.location;
-                        openContentModal(title, location);
-                    }
-                });
+                // 기존 목록 지우기
+                postsContainer.innerHTML = '';
 
-                backToListBtn.addEventListener('click', () => {
-                    hideModal(contentModal);
-                    if (currentOpenDate) {
-                        openPostsModal(currentOpenDate);
-                    }
-                });
-
-                closePostsModalBtn.addEventListener('click', () => hideModal(postsModal));
-                closeContentModalBtn.addEventListener('click', () => hideModal(contentModal));
-                postsModal.addEventListener('click', (e) => { if (e.target === postsModal) hideModal(postsModal); });
-                contentModal.addEventListener('click', (e) => { if (e.target === contentModal) hideModal(contentModal); });
-            }
-
-            function processEvents(data) {
-                const validEvents = {};
-                const exceptions = {};
-                const today = new Date();
-                const currentYear = today.getFullYear();
-                const currentMonth = today.getMonth();
-                const startDate = new Date(currentYear, currentMonth, 1);
-                const endDate = new Date(currentYear, 11, 31);
-
-                for (const dateStr in data) {
-                    if (dateStr === "exceptions") continue;
-                    const eventDate = new Date(dateStr + 'T00:00:00');
-                    if (eventDate >= startDate && eventDate <= endDate) {
-                        validEvents[dateStr] = data[dateStr];
-                    } else {
-                        exceptions[dateStr] = data[dateStr];
-                    }
+                if (allPosts.length === 0) {
+                    postsContainer.innerHTML = '<p>예정된 게시물이 없습니다.</p>';
+                    return;
                 }
-                return { validEvents, exceptions };
-            }
 
-            function createMonthGrid(year, month, events) {
-                const monthGrid = document.createElement('div');
-                monthGrid.className = 'month-grid';
-                const monthName = new Date(year, month).toLocaleString('ko-KR', { month: 'long' });
-                monthGrid.innerHTML = `<h2>${year}년 ${monthName}</h2>`;
-                const daysOfWeek = document.createElement('div');
-                daysOfWeek.className = 'days-of-week';
-                ['일', '월', '화', '수', '목', '금', '토'].forEach(day => { daysOfWeek.innerHTML += `<div>${day}</div>`; });
-                monthGrid.appendChild(daysOfWeek);
-                const datesGrid = document.createElement('div');
-                datesGrid.className = 'dates-grid';
-                const firstDay = new Date(year, month, 1).getDay();
-                const daysInMonth = new Date(year, month + 1, 0).getDate();
-                const today = new Date();
-                for (let i = 0; i < firstDay; i++) { datesGrid.innerHTML += `<div class="date-cell"></div>`; }
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const dateCell = document.createElement('div');
-                    dateCell.className = 'date-cell';
-                    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    let cellContent = `<div class="day-number">${day}</div>`;
-                    if (events[dateStr]) {
-                        dateCell.classList.add('has-event');
-                        dateCell.dataset.date = dateStr;
-                        const firstEvent = events[dateStr][0];
-                        cellContent += `<div class="event-title">${firstEvent.title}</div>`;
-                        if (events[dateStr].length > 1) { cellContent += `<div class="event-title">...</div>`; }
-                    }
-                    if (new Date(dateStr).toDateString() === today.toDateString()) {
-                        dateCell.classList.add('today');
-                    }
-                    dateCell.innerHTML = cellContent;
-                    datesGrid.appendChild(dateCell);
-                }
-                monthGrid.appendChild(datesGrid);
-                return monthGrid;
+                // 목록 다시 그리기
+                allPosts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post-item';
+                    postElement.dataset.location = post.location;
+                    postElement.dataset.title = post.title;
+
+                    postElement.innerHTML = `
+                        <h3>${post.title}</h3>
+                        <p class="post-date">${post.date}</p>
+                    `;
+
+                    postElement.addEventListener('click', () => {
+                        openContentModal(post.title, post.location);
+                    });
+
+                    postsContainer.appendChild(postElement);
+                });
             }
 
             function showModal(modal) { modal.classList.remove('hidden'); }
             function hideModal(modal) { modal.classList.add('hidden'); }
 
-            function openPostsModal(date) {
-                const eventsForDate = allEvents[date];
-                if (!eventsForDate) return;
-                currentOpenDate = date;
-                modalDate.textContent = date;
-                postsList.innerHTML = '';
-                eventsForDate.forEach(event => {
-                    const li = document.createElement('li');
-                    li.textContent = event.title;
-                    li.dataset.location = event.location;
-                    postsList.appendChild(li);
-                });
-                showModal(postsModal);
-            }
-
             async function openContentModal(title, location) {
-                hideModal(postsModal);
                 contentTitle.textContent = title;
                 contentBody.innerHTML = '<p>로딩 중...</p>';
                 showModal(contentModal);
@@ -332,7 +211,14 @@
                 }
             }
 
-            initCalendar();
+            // 이벤트 리스너
+            sortSelect.addEventListener('change', renderPosts);
+            closeContentModalBtn.addEventListener('click', () => hideModal(contentModal));
+            contentModal.addEventListener('click', (e) => { if (e.target === contentModal) hideModal(contentModal); });
+            inside.addEventListener('click', () => {
+                openContentModal('6반 인사이드', 'posts/inside.md');
+            });
+            initialLoad();
         });
     </script>
 </body>
