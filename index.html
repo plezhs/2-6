@@ -78,7 +78,7 @@
     </style>
 </head>
 <body>
-    <h1 id="inside">6반 인사이드</h1>
+    <h1 id="inside">2-6반</h1>
 
     <div id="controls">
         <select id="sort-select">
@@ -215,9 +215,9 @@
             sortSelect.addEventListener('change', renderPosts);
             closeContentModalBtn.addEventListener('click', () => hideModal(contentModal));
             contentModal.addEventListener('click', (e) => { if (e.target === contentModal) hideModal(contentModal); });
-            inside.addEventListener('click', () => {
-                openContentModal('6반 인사이드', 'posts/inside.md');
-            });
+            // inside.addEventListener('click', () => {
+            //     openContentModal('6반 인사이드', 'posts/inside.md');
+            // });
             initialLoad();
         });
     </script>
