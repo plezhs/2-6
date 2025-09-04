@@ -5,3 +5,5 @@
 -
 
 시간 :  9월 9일 (화) 4교시
+
+[<img src="posts/images/chemical.jpg" width="300" height="225"/>]
