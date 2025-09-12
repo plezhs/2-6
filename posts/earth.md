@@ -6,4 +6,4 @@
 
 시간 :  9월 15일 (월) 2교시
 
-<!-- [<img src="posts/images/physic.png" width="300" height="450"/>] -->
+[<img src="posts/images/earth.jpg" width="300" height="450"/>

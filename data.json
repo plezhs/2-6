@@ -1,36 +1,4 @@
 {
-    "2025-09-08": [
-        {
-            "title": "한문 수행",
-            "location": "posts/hanmoon.md"
-        },
-        {
-            "title": "체육 수행",
-            "location": "posts/pe.md"
-        }
-    ],
-    "2025-09-09": [
-        {
-            "title": "화학 수행",
-            "location": "posts/chemical.md"
-        },
-        {
-            "title": "영어 수행 1차시",
-            "location": "posts/eng.md"
-        }
-    ],
-    "2025-09-10": [
-            {
-                "title": "영어 수행 2차시",
-                "location": "posts/eng.md"
-            }
-        ],
-    "2025-09-11": [
-        {
-            "title": "영어 수행 3차시",
-            "location": "posts/eng.md"
-        }
-    ],
     "2025-09-16": [
         {
             "title": "영어 수행 4차시",
@@ -41,6 +9,10 @@
         {
             "title": "지구 과학 수행",
             "location": "posts/earth.md"
+        },
+        {
+            "title": "한문 수행 논술",
+            "location": "posts/hanmoon.md"
         }
     ],
     "exceptions": {}
