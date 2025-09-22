@@ -17,5 +17,11 @@
             "location": "posts/korean.md"
         }
     ],
+    "2025-09-30": [
+        {
+            "title": "화학 수행",
+            "location": "posts/chemical.md"
+        }
+    ],
     "exceptions": {}
 }

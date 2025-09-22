@@ -1,9 +1,9 @@
 # 화학 수행
 
 ---
-범위 : 화학 부교재 P.38 ~ P.42
+범위 : 화학 부교재 P.43 ~ P.54
 -
 
-시간 :  9월 9일 (화) 4교시
+시간 :  9월 30일 (화) 4교시
 
-[<img src="posts/images/chemical.jpg" width="300" height="225"/>]
+[<img src="posts/images/chemical.png" width="300" height="225"/>]
