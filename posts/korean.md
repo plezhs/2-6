@@ -12,4 +12,4 @@
 
 <img src="posts/images/korean.png" width="300" height="450"/>
 
-[포트폴리오오]: https://docs.google.com/forms/d/e/1FAIpQLSfJTrIu-HxxQ5Uo6DXDSXmKOv_kmyPOmi55_NBxM53orzd9Uw/viewform?usp=send_form
+[포트폴리오]: https://docs.google.com/forms/d/e/1FAIpQLSfJTrIu-HxxQ5Uo6DXDSXmKOv_kmyPOmi55_NBxM53orzd9Uw/viewform?usp=send_form
