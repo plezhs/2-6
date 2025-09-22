@@ -1,18 +1,14 @@
 {
-    "2025-09-16": [
+    "2025-09-26": [
         {
-            "title": "영어 수행 4차시",
-            "location": "posts/eng.md"
+            "title": "국어 수행 1차시",
+            "location": "posts/korean.md"
         }
     ],
-    "2025-09-15": [
+    "2025-09-29": [
         {
-            "title": "지구 과학 수행",
-            "location": "posts/earth.md"
-        },
-        {
-            "title": "한문 수행 논술",
-            "location": "posts/hanmoon.md"
+            "title": "국어 수행 2차시",
+            "location": "posts/korean.md"
         }
     ],
     "exceptions": {}
